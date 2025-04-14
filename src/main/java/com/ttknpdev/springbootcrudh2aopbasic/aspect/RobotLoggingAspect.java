@@ -11,22 +11,22 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.List;
 
-/* Aspect for logging execution. */
+// Aspect for logging execution.
 @Aspect
 @Component
 public class RobotLoggingAspect extends Logging {
 
-// when use @Around
-// in browser can't show data
-// but console can show data
-//    @Around("execution(* com.ttknpdev.springbootcrudh2aopbasic.dao.RobotDao.*(..))") // accesses all method
-//    public void logAround(ProceedingJoinPoint joinPoint) throws Throwable {
-//        robotLoggingAspect.debug("***** logAround running ..... **** before invokation of the method " + joinPoint.getSignature().getName()+" *****");
-//        joinPoint.proceed();
-//        robotLoggingAspect.debug("***** logAround ending ..... **** after invokation of the method " + joinPoint.getSignature().getName()+" *****");
-//    }
+    // when use @Around
+    // in browser can't show data
+    // but console can show data
+    //    @Around("execution(* com.ttknpdev.springbootcrudh2aopbasic.dao.RobotDao.*(..))") // accesses all method
+    //    public void logAround(ProceedingJoinPoint joinPoint) throws Throwable {
+    //        robotLoggingAspect.debug("***** logAround running ..... **** before invokation of the method " + joinPoint.getSignature().getName()+" *****");
+    //        joinPoint.proceed();
+    //        robotLoggingAspect.debug("***** logAround ending ..... **** after invokation of the method " + joinPoint.getSignature().getName()+" *****");
+    //    }
 
-    @Before("execution(* com.ttknpdev.springbootcrudh2aopbasic.dao.RobotDao.creaet(..))")
+    @Before("execution(* com.ttknpdev.springbootcrudh2aopbasic.dao.RobotDao.create(..))")
     public void logBeforeCreate(JoinPoint joinPoint) {
         robotLoggingAspect.debug("logBeforeCreate running .....");
         robotLoggingAspect.debug("Enter: {} "+joinPoint.getSignature().getDeclaringTypeName()+" , Method: {}  "+ joinPoint.getSignature().getName()+" , Return: {} "+Arrays.toString(joinPoint.getArgs()));
@@ -50,7 +50,7 @@ public class RobotLoggingAspect extends Logging {
         robotLoggingAspect.debug("Enter: {} "+joinPoint.getSignature().getDeclaringTypeName()+" , Method: {}  "+ joinPoint.getSignature().getName()+" , Return: {} "+robots);
     }
 
-    @After("execution(* com.ttknpdev.springbootcrudh2aopbasic.dao.RobotDao.creaet(..))")
+    @After("execution(* com.ttknpdev.springbootcrudh2aopbasic.dao.RobotDao.create(..))")
     public void logAfterCreate(JoinPoint joinPoint) {
         robotLoggingAspect.debug("logAfterCreate running .....");
         robotLoggingAspect.debug("Enter: {} "+joinPoint.getSignature().getDeclaringTypeName()+
@@ -62,7 +62,6 @@ public class RobotLoggingAspect extends Logging {
     }
 
     /*
-
     *** when @Before logging dbms is not worked
     2566-07-14 19:01:39 [http-nio-8080-exec-1] DEBUG RobotLoggingAspect:36 - logBefore running .....
     2566-07-14 19:01:39 [http-nio-8080-exec-1] DEBUG RobotLoggingAspect:37 - Enter: {} com.ttknpdev.springbootcrudh2aopbasic.dao.RobotDao , Method: {}  creaet , Return: {} [Robot{id=null, name='RX-91', status='enable', price=999999.0, build='2566-07-14 19:01:39'}]
@@ -72,7 +71,6 @@ public class RobotLoggingAspect extends Logging {
     2566-07-14 19:01:39 [http-nio-8080-exec-1] DEBUG RobotLoggingAspect:42 - logAfter running .....
     2566-07-14 19:01:39 [http-nio-8080-exec-1] DEBUG RobotLoggingAspect:43 - Enter: {} com.ttknpdev.springbootcrudh2aopbasic.dao.RobotDao , Method: {}  creaet , Return: {} [Robot{id=4, name='RX-91', status='enable', price=999999.0, build='2566-07-14 19:01:39'}]
     *** look at attribute id it is 4
-
     */
 
     @AfterReturning(value = "execution(* com.ttknpdev.springbootcrudh2aopbasic.dao.RobotDao.read(..))",returning = "robot")

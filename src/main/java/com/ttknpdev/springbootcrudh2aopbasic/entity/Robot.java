@@ -14,7 +14,7 @@ public class Robot {
     private String name;
     private String status;
     private Double price;
-    private String build = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()); // // DATETIME format YYYY-MM-DD HH:MI:SS
+    private String build = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()); // mapped timestamp in mysql
 
     public Robot(String name, String status, Double price) {
         this.name = name;
